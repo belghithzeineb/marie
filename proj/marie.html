@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Mariem ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fce4ec;
+            background-image: url('img/pic1.jpg'); /* Add your background image */
+            background-size: cover;
+            background-position: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 400px;
+        }
+        button {
+            background-color: #ffa640;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #b36e13;
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>For Mariem ❤️</h1>
+        <p>Mariem, answer these just for me 😊</p>
+        <div id="question-container">
+            <p id="question">Loading...</p>
+            <button onclick="nextQuestion(1)">Yes</button>
+            <button onclick="nextQuestion(0)">No</button>
+            <button onclick="nextQuestion(0.5)">Maybe</button>
+            <textarea id="answerText" placeholder="Write something..."></textarea>
+            <button onclick="submitText()">Submit</button>
+        </div>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        let questions = [
+            "Do you believe we met for a reason?",
+            "What’s something about me that makes you feel safe?",
+            "How do you feel when we talk about deep topics?",
+            "Do you think I truly understand you?",
+            "Do you feel like you can be completely yourself around me?",
+            "What do you think makes our connection special?",
+            "If you could describe our bond in one word, what would it be?",
+            "What’s something about me that surprises you?",
+            "Do you ever think about me when I’m not around?",
+            "Have you had butterflies when we kissed ?",
+            "Is It Hot in Here or Is It Me ? shoutout to Asma",
+            "What's something I do that makes you smile every time?",
+            "do you think you can change something for the sake of us ?",
+            "Do you see me as someone who could always be in your life?",
+            "What’s something you wish I knew about how you feel?",
+            "Do you think we can bring out the best in each other?",
+            "What’s your favorite thing about the way we communicate?",
+            "If we could share one big adventure together, what would it be?",
+            "Did you have a flashback about the night that we spent together ever since?",
+            "Do you think we have the potential for something truly special?"
+        ];
+        let currentIndex = 0;
+        let score = 0;
+        let responses = [];
+        
+        document.getElementById("question").innerText = questions[currentIndex];
+        
+        function nextQuestion(points) {
+            score += points;
+            responses.push({ question: questions[currentIndex], answer: document.getElementById("answerText").value });
+            document.getElementById("answerText").value = "";
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                document.getElementById("question").innerText = questions[currentIndex];
+            } else {
+                document.getElementById("question-container").style.display = "none";
+                
+                // Final message with score
+                let finalMessage = `Mariem, you like me ${score} out of ${questions.length}! ❤️ Love, Zeineb.`;
+                
+                // Add an image at the last step (update 'assets/celebration.jpg' with your image path)
+                let imageHtml = `<img src="img/pic2.jpg" alt="Celebration">`;
+                
+                // Format responses
+                let detailedResponses = responses.map(r => `<p><strong>${r.question}</strong><br>${r.answer || "No additional comment"}</p>`).join("");
+                
+                // Display final message, image, and responses
+                document.getElementById("response").innerHTML = finalMessage + "<br>" + imageHtml + "<br><br> Your thoughts:<br>" + detailedResponses;
+            }
+        }
+        
+        function submitText() {
+            // Save the current answer before moving to the next question
+            responses.push({ question: questions[currentIndex], answer: document.getElementById("answerText").value });
+            score += 1; // Treat submit as 'Yes'
+            document.getElementById("answerText").value = "";
+            
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                document.getElementById("question").innerText = questions[currentIndex];
+            } else {
+                document.getElementById("question-container").style.display = "none";
+                
+                // Final message with score
+                let finalMessage = `Mariem, you like me ${score} out of ${questions.length}! ❤️ Love, Zeineb.`;
+                
+                // Add an image at the last step (update 'assets/celebration.jpg' with your image path)
+                let imageHtml = `<img src="img/pic2.jpg" alt="Celebration">`;
+                
+                // Format responses
+                let detailedResponses = responses.map(r => `<p><strong>${r.question}</strong><br>${r.answer || "No additional comment"}</p>`).join("");
+                
+                // Display final message, image, and responses
+                document.getElementById("response").innerHTML = finalMessage + "<br>" + imageHtml + "<br><br> Your thoughts:<br>" + detailedResponses;
+        }}
+    </script>
+</body>
+</html>
+    
